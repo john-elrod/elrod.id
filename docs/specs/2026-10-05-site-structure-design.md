@@ -164,8 +164,9 @@ criteria.
 - **CI (every pull request):** build, lint/format check, HTML validation,
   broken-link check, automated accessibility scan, and Lighthouse budgets
   matching §6. All checks are required before merge.
-- **CD:** merging to `main` deploys to production automatically once CI
-  passes. Every pull request gets a preview deployment. A documented
+- **CD:** `main` is the only long-lived branch. Pull requests merge into
+  `main`, and merging to `main` deploys to production automatically once
+  CI passes. There are no pull request preview deployments. A documented
   rollback procedure is required.
 - **Repository workflow:** `main` is protected (pull request required,
   CI must pass), with a pull request template that includes the testing
