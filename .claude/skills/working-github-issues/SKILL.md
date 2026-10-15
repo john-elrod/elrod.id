@@ -16,7 +16,7 @@ to `main`, and never closes issues by hand.**
 
 1. **Read the issue in full:**
    ```bash
-   gh issue view <n> --repo john-league-ninja/elrod.id --comments
+   gh issue view <n> --repo john-elrod/elrod.id --comments
    ```
    - If the issue is closed, stop and tell John.
    - If the user asked for "the next issue", list the open `v1` issues
@@ -52,7 +52,7 @@ to `main`, and never closes issues by hand.**
 8. **Push and open the PR:**
    ```bash
    git push -u origin HEAD
-   gh pr create --repo john-league-ninja/elrod.id --base main \
+   gh pr create --repo john-elrod/elrod.id --base main \
      --title "<issue title> (#<n>)" --body-file <tmpfile>
    ```
 9. **Report** the PR link to John, a one-line summary, and anything
