@@ -60,23 +60,32 @@ elrod.id/
 | Experience `/experience` | Expand on the résumé | Reverse-chronological roles (company, title, dates, highlights), skills summary, education and certifications, résumé PDF download |
 | 404 | Recover from bad links | Short message with links to Home and Projects |
 
-### 3.2 Content model
+### 3.2 Content
 
-Content is stored as structured records separate from page templates.
-Adding a project or role means adding a record, not editing layout code.
-The storage format is chosen with the stack.
+Content is hand-curated. Each page's content is written directly in its
+own content component, and the active design template pulls that
+component in. There is no structured data model: no records, no schemas
+and no generated lists. See
+[decision record 0002](../decisions/0002-hand-curated-content-components.md).
 
-- **Project:** `slug`, `title`, `summary`, `role`, `year`, `tags[]`,
-  `featured` (bool), `problem`, `approach`, `outcome`, `tech[]`,
-  `links[]` (label, url), `images[]` (src, alt), `order`.
-- **Role:** `company`, `title`, `start`, `end` (or present), `location`,
-  `highlights[]`, `order`.
-- **Site profile:** `name`, `headline`, `valueStatement`, `bio`,
-  `headshot` (src, alt), `email`, `social[]` (label, url),
-  `resumePdf`.
+- **One content component per page:** Home, Projects index, Experience,
+  404, and one for each project detail page at `/projects/<slug>`.
+- **Shared content:** content that appears on every page, such as the
+  footer's email, LinkedIn, GitHub and résumé links, lives in a shared
+  content component, not in the template.
+- **Templates hold no content.** A design template provides the page
+  layout and styled building blocks, such as a project card or a role
+  entry. Content components are built from those building blocks, so
+  swapping the design template changes how the content looks but not
+  what it says.
+- **Lists are written by hand.** Home's featured projects and recent
+  experience, the Projects index cards and each project's previous/next
+  links are written directly in the relevant content components. A
+  project's title and summary appear both on its card and on its detail
+  page, and both are updated together.
 
-Home "featured projects" are the projects with `featured: true`, ordered by
-`order`. Home "recent experience" is the first three roles by date.
+Adding a project means adding its content component and route, then
+adding its card to the Projects index, and to Home if it is featured.
 
 ## 4. Layout
 

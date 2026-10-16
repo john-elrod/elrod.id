@@ -18,7 +18,9 @@ responsive up to full desktop width.
   [docs/decisions/0001-technology-stack-and-hosting.md](docs/decisions/0001-technology-stack-and-hosting.md):
   Nuxt 4 (static generation, Vite) with TypeScript, plain CSS design
   tokens generated from `DESIGN.md` (each design template is a Nuxt layer),
-  Nuxt Content for the content model, Node.js 24 LTS and pnpm. Hosting is
+  hand-curated content components with no data model (see
+  [0002](docs/decisions/0002-hand-curated-content-components.md)),
+  Node.js 24 LTS and pnpm. Hosting is
   Azure Static Web Apps (Free plan) with Azure DNS, IaC is Bicep in
   `iac/`, and CI/CD runs on GitHub Actions in `.github/workflows/`. Don't
   add other frameworks or tooling without a new decision record. Record
