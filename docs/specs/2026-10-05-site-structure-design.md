@@ -185,7 +185,7 @@ Claude, as tester, owns verification:
 ## 9. GitHub issue plan
 
 > **Snapshot only.** This is the initial issue breakdown as of 2026-10-05.
-> [GitHub Issues](https://github.com/john-league-ninja/elrod.id/issues) is
+> [GitHub Issues](https://github.com/john-elrod/elrod.id/issues) is
 > the system of record for all work items. This table is not maintained
 > after the issues are filed, and the `#` column is a planning number, not
 > the GitHub issue number.

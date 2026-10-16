@@ -11,7 +11,7 @@ responsive up to full desktop width.
 - **Design spec:** [docs/specs/2026-10-05-site-structure-design.md](docs/specs/2026-10-05-site-structure-design.md)
   covers the sitemap, layout, breakpoints, theming, site-wide quality
   requirements and CI/CD.
-- **Work items:** [GitHub Issues](https://github.com/john-league-ninja/elrod.id/issues)
+- **Work items:** [GitHub Issues](https://github.com/john-elrod/elrod.id/issues)
   is the system of record. The issue table in the spec is a historical
   snapshot. Do not update it.
 - **Technology stack:** not chosen yet. It is tracked as a decision issue.
@@ -78,7 +78,7 @@ wait for John's decision. Don't choose for him.
 - Development happens on Windows. The Bash tool runs Git Bash, and
   PowerShell is also available.
 - GitHub access uses the `gh` CLI, authenticated as `john-league-ninja`.
-  Repository: `john-league-ninja/elrod.id`.
+  Repository: `john-elrod/elrod.id`.
 - To pass multi-line text to `gh` (issue and PR bodies), write it to a
   temporary file outside the repo and use `--body-file`. Don't inline it
   in the shell.

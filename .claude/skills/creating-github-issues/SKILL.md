@@ -26,7 +26,7 @@ dependencies.
    create labels or milestones without asking.
    ```bash
    gh label list
-   gh api repos/john-league-ninja/elrod.id/milestones --jq '.[].title'
+   gh api repos/john-elrod/elrod.id/milestones --jq '.[].title'
    ```
    If a label or milestone you'd expect is missing, create the issue
    without it and tell John.
@@ -34,7 +34,7 @@ dependencies.
    template below.
 5. **Create the issue:**
    ```bash
-   gh issue create --repo john-league-ninja/elrod.id \
+   gh issue create --repo john-elrod/elrod.id \
      --title "<title>" --body-file <tmpfile> \
      --label "<a>,<b>" --milestone "<v1|Backlog>"
    ```
