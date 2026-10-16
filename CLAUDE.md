@@ -14,10 +14,15 @@ responsive up to full desktop width.
 - **Work items:** [GitHub Issues](https://github.com/john-elrod/elrod.id/issues)
   is the system of record. The issue table in the spec is a historical
   snapshot. Do not update it.
-- **Technology stack:** not chosen yet. It is tracked as a decision issue.
-  Do not add frameworks, package managers or build tooling until that
-  issue is resolved. Once it is, record the build, test and run commands
-  in this file.
+- **Technology stack:** decided in
+  [docs/decisions/0001-technology-stack-and-hosting.md](docs/decisions/0001-technology-stack-and-hosting.md):
+  Nuxt 4 (static generation, Vite) with TypeScript, plain CSS design
+  tokens generated from `DESIGN.md` (each design template is a Nuxt layer),
+  Nuxt Content for the content model, Node.js 24 LTS and pnpm. Hosting is
+  Azure Static Web Apps (Free plan) with Azure DNS, IaC is Bicep in
+  `iac/`, and CI/CD runs on GitHub Actions in `.github/workflows/`. Don't
+  add other frameworks or tooling without a new decision record. Record
+  the build, test and run commands here once the site shell (#5) exists.
 
 ## Roles
 
