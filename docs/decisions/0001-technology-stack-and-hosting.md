@@ -1,6 +1,7 @@
 # 0001 — Technology stack and hosting
 
-- **Status:** Accepted. John approves it by merging the pull request that adds this record.
+- **Status:** Accepted. The content-format decision is superseded by
+  [0002](0002-hand-curated-content-components.md).
 - **Date:** 2026-10-15
 - **Decider:** John Elrod (architect)
 - **Author:** Claude (engineer)
@@ -49,7 +50,7 @@ comparisons below record it for information only.
 | Framework | **Nuxt 4**, fully pre-rendered with `nuxt generate` (static site generation). Vite is Nuxt's built-in bundler. |
 | Language | TypeScript and Vue single-file components |
 | Styling | **Plain CSS with custom properties (design tokens)**, generated from `DESIGN.md` at build time. Each design template is a **Nuxt layer**. |
-| Content format | **Nuxt Content v3** collections: YAML for projects, roles and the site profile, Markdown for longer text, all validated against schemas |
+| Content format | ~~Nuxt Content v3 collections~~. **Superseded by [0002](0002-hand-curated-content-components.md):** hand-curated Vue content components, no data structure. |
 | Runtime and package manager | **Node.js 24 LTS** and **pnpm**, with the pnpm version pinned in `package.json` (`packageManager`) |
 | Hosting | **Azure Static Web Apps, Free plan**, region `westus2` (the resource group's location) |
 | DNS | **Azure DNS** public zone `elrod.id`, delegated from GoDaddy. Registration stays at GoDaddy. |
@@ -103,6 +104,10 @@ The chosen approach meets the spec's dark-only theme
 and the accessibility scan in CI checks the rendered pages.
 
 ### Content format
+
+> **Superseded by [0002](0002-hand-curated-content-components.md).**
+> John chose hand-curated content components instead of structured
+> records. The comparison below is kept for the record.
 
 | Option | Pros | Cons |
 |---|---|---|
