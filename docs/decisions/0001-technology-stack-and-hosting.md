@@ -52,7 +52,7 @@ comparisons below record it for information only.
 | Styling | **Plain CSS with custom properties (design tokens)**, generated from `DESIGN.md` at build time. Each design template is a **Nuxt layer**. |
 | Content format | ~~Nuxt Content v3 collections~~. **Superseded by [0002](0002-hand-curated-content-components.md):** hand-curated Vue content components, no data structure. |
 | Runtime and package manager | **Node.js 24 LTS** and **pnpm**, with the pnpm version pinned in `package.json` (`packageManager`) |
-| Hosting | **Azure Static Web Apps, Free plan**, region `westus2` (the resource group's location) |
+| Hosting | **Azure Static Web Apps, Free plan**, region `westus2` (the resource group's location). *Update 2026-11-06: the portal created the app in East US 2. See [deployment](../deployment.md).* |
 | DNS | **Azure DNS** public zone `elrod.id`, delegated from GoDaddy. Registration stays at GoDaddy. |
 | HTTPS | Static Web Apps' free managed certificates, which renew automatically |
 | Infrastructure as code | **Bicep** in `/iac`, using Azure Verified Modules where one exists |

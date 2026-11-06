@@ -23,8 +23,24 @@ responsive up to full desktop width.
   Node.js 24 LTS and pnpm. Hosting is
   Azure Static Web Apps (Free plan) with Azure DNS, IaC is Bicep in
   `iac/`, and CI/CD runs on GitHub Actions in `.github/workflows/`. Don't
-  add other frameworks or tooling without a new decision record. Record
-  the build, test and run commands here once the site shell (#5) exists.
+  add other frameworks or tooling without a new decision record.
+- **Deployment:** [docs/deployment.md](docs/deployment.md) records the Azure
+  resources (static web app `elrod-id-website` in resource group
+  `elrod-id_group`) and how the workflow deploys.
+
+## Commands
+
+Run from `src/`. Needs Node.js 24 and pnpm (the version is pinned in
+`src/package.json`).
+
+| Command | Purpose |
+|---|---|
+| `pnpm install` | Install dependencies |
+| `pnpm dev` | Dev server at `http://localhost:3000` |
+| `pnpm generate` | Static build into `src/.output/public` (`pnpm build` is an alias) |
+| `pnpm preview` | Serve the built site |
+
+There are no lint or test commands yet (#19).
 
 ## Roles
 
@@ -41,7 +57,7 @@ wait for John's decision. Don't choose for him.
 
 | Path | Contents |
 |---|---|
-| `src/` | Site source |
+| `src/` | Nuxt project (`package.json`, `app/`, `public/`) |
 | `docs/` | Specs, decision records, technical documentation |
 | `iac/` | Infrastructure as code (hosting, DNS, HTTPS) |
 | `extras/` | Miscellaneous files |

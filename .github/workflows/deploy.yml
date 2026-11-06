@@ -1,0 +1,73 @@
+name: Build and deploy to Azure Static Web Apps
+
+# Every pull request to main is built. Every push to main is built and then
+# deployed to production. There are no PR preview deployments
+# (docs/decisions/0001-technology-stack-and-hosting.md).
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  build:
+    name: Build
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: src
+    steps:
+      - uses: actions/checkout@v5
+
+      # pnpm's version comes from "packageManager" in src/package.json.
+      - uses: pnpm/action-setup@v4
+        with:
+          package_json_file: src/package.json
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 24
+          cache: pnpm
+          cache-dependency-path: src/pnpm-lock.yaml
+
+      - run: pnpm install --frozen-lockfile
+
+      - run: pnpm generate
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: site
+          path: src/.output/public
+          if-no-files-found: error
+          retention-days: 7
+
+  deploy:
+    name: Deploy to production
+    needs: build
+    if: github.event_name == 'push' && github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v4
+        with:
+          name: site
+          path: site
+
+      # Uploads the pre-built files. Azure's own build (Oryx) is skipped.
+      - uses: Azure/static-web-apps-deploy@v1
+        with:
+          azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_SALMON_SEA_04187CA0F }}
+          action: upload
+          app_location: site
+          api_location: ""
+          skip_app_build: true
+          skip_api_build: true
