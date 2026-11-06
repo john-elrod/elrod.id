@@ -11,17 +11,19 @@ defined in Bicep (#18).
 | Item | Value |
 |---|---|
 | Subscription | Ninja Azure Subscription (`b9d9e1c6-b2ab-4e1d-93d0-9673867b5ed8`) |
-| Resource group | `elrod-id_group` |
+| Resource group | `elrod-id_group` (`westus2`) |
 | Static web app | `elrod-id-website` |
 | Plan | Free |
-| Region | East US 2 |
+| Region | East US 2 (`eastus2`) |
 | Default hostname | `salmon-sea-04187ca0f.5.azurestaticapps.net` |
 | Linked repository | `john-elrod/elrod.id`, branch `main` |
 | Custom domains | None yet (#18) |
 
-Decision record 0001 expected `westus2`. The portal placed the app in East US
-2 instead. Static Web Apps is a global service, and the region only
-sets where its management data lives, so this does not affect visitors.
+The static web app is in East US 2 by John's decision, recorded in 0001. The
+resource group is in `westus2`, and the two regions do not have to match.
+Static Web Apps does not offer plain "East US". Its regions are West US 2,
+Central US, East US 2, West Europe and East Asia. #18 must set `eastus2` in
+Bicep so a redeploy does not move the app.
 
 ## GitHub Actions workflow
 
