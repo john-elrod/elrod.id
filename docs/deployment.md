@@ -1,12 +1,13 @@
 # Deployment
 
-How the site is built and hosted today. #18 (infrastructure as code) and
-#20 (production deploy, rollback) will extend this document.
+How the site is built and hosted today. #20 (production deploy, rollback)
+will extend this document. Hosting, DNS and HTTPS are defined in Bicep and
+described in [infrastructure.md](infrastructure.md).
 
 ## Azure resources
 
-The static web app was created by hand in the Azure portal and is not yet
-defined in Bicep (#18).
+The static web app was created by hand in the Azure portal. `iac/main.bicep`
+adopts it (see [infrastructure.md](infrastructure.md)).
 
 | Item | Value |
 |---|---|
@@ -17,13 +18,13 @@ defined in Bicep (#18).
 | Region | East US 2 (`eastus2`) |
 | Default hostname | `salmon-sea-04187ca0f.5.azurestaticapps.net` |
 | Linked repository | `john-elrod/elrod.id`, branch `main` |
-| Custom domains | None yet (#18) |
+| Custom domains | `elrod.id` (bound by hand, DNS still at GoDaddy). `www.elrod.id` and the Azure DNS zone come with the first apply of `iac/` (#18). |
 
 The static web app is in East US 2 by John's decision, recorded in 0001. The
 resource group is in `westus2`, and the two regions do not have to match.
 Static Web Apps does not offer plain "East US". Its regions are West US 2,
-Central US, East US 2, West Europe and East Asia. #18 must set `eastus2` in
-Bicep so a redeploy does not move the app.
+Central US, East US 2, West Europe and East Asia. `iac/main.bicep` sets
+`eastus2` so a redeploy does not move the app.
 
 ## GitHub Actions workflow
 

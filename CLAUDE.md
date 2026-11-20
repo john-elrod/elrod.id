@@ -27,6 +27,9 @@ responsive up to full desktop width.
 - **Deployment:** [docs/deployment.md](docs/deployment.md) records the Azure
   resources (static web app `elrod-id-website` in resource group
   `elrod-id_group`) and how the workflow deploys.
+- **Infrastructure:** [docs/infrastructure.md](docs/infrastructure.md) covers
+  the Bicep in `iac/` (hosting, DNS, HTTPS), how to plan and apply it, the
+  manual bootstrap steps, where secrets live and the monthly cost.
 
 ## Commands
 
