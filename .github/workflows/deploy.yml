@@ -56,16 +56,30 @@ jobs:
     needs: build
     if: github.event_name == 'push' && github.ref == 'refs/heads/main'
     runs-on: ubuntu-latest
+    # The static web app's deploymentAuthPolicy is "GitHub", so Azure
+    # rejects a deploy that has no GitHub OIDC ID token, even with a valid
+    # deployment token (docs/deployment.md).
+    permissions:
+      contents: read
+      id-token: write
     steps:
       - uses: actions/download-artifact@v4
         with:
           name: site
           path: site
 
+      - name: Get GitHub OIDC ID token
+        id: idtoken
+        uses: actions/github-script@v8
+        with:
+          script: return await core.getIDToken()
+          result-encoding: string
+
       # Uploads the pre-built files. Azure's own build (Oryx) is skipped.
       - uses: Azure/static-web-apps-deploy@v1
         with:
           azure_static_web_apps_api_token: ${{ secrets.AZURE_STATIC_WEB_APPS_API_TOKEN_SALMON_SEA_04187CA0F }}
+          github_id_token: ${{ steps.idtoken.outputs.result }}
           action: upload
           app_location: site
           api_location: ""
