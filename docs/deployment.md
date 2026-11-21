@@ -28,8 +28,9 @@ Central US, East US 2, West Europe and East Asia. `iac/main.bicep` sets
 
 ## GitHub Actions workflow
 
-[`.github/workflows/deploy.yml`](../.github/workflows/deploy.yml) replaced
-the file the Azure portal generated. That file used Azure's own build (Oryx)
+[`.github/workflows/azure-static-web-apps-salmon-sea-04187ca0f.yml`](../.github/workflows/azure-static-web-apps-salmon-sea-04187ca0f.yml)
+replaced the contents of the file the Azure portal generated, under the
+same filename. The original used Azure's own build (Oryx)
 and PR previews, and it failed on the first run because the repository had
 no `package.json`. The current workflow follows decision record 0001:
 
@@ -52,8 +53,15 @@ the token with `actions/github-script`, and passes it to
 
 Without the ID token, the deploy step fails with *"No matching Static Web
 App was found or the api key was invalid"*, even when the deployment token
-is correct. Resetting the token does not fix that error (#37). To check
-the policy:
+is correct. Resetting the token does not fix that error (#37).
+
+Azure finds the static web app from the workflow reference inside the ID
+token, so **the workflow file must keep its generated name**,
+`azure-static-web-apps-salmon-sea-04187ca0f.yml`. If it is renamed, the
+deploy fails with *"Could not determine the Static Web App from the GitHub
+OIDC workflow reference"* (#37). Its contents can change freely.
+
+To check the policy:
 
 ```bash
 az rest --method get --url "https://management.azure.com/subscriptions/b9d9e1c6-b2ab-4e1d-93d0-9673867b5ed8/resourceGroups/elrod-id_group/providers/Microsoft.Web/staticSites/elrod-id-website?api-version=2024-04-01" \
