@@ -40,6 +40,25 @@ no `package.json`. The current workflow follows decision record 0001:
 - Node 24, with the pnpm version taken from `packageManager` in
   `src/package.json`.
 
+### Deployment authorization policy: GitHub ID token required
+
+The static web app's `deploymentAuthPolicy` is `GitHub`, the default when
+the portal links a GitHub repository. With that policy Azure accepts a
+deploy only if it carries a GitHub OIDC ID token as well as the deployment
+token. The deploy job therefore has `id-token: write` (that job only), gets
+the token with `actions/github-script`, and passes it to
+`Azure/static-web-apps-deploy` as `github_id_token`.
+
+Without the ID token, the deploy step fails with *"No matching Static Web
+App was found or the api key was invalid"*, even when the deployment token
+is correct. Resetting the token does not fix that error (#37). To check
+the policy:
+
+```bash
+az rest --method get --url "https://management.azure.com/subscriptions/b9d9e1c6-b2ab-4e1d-93d0-9673867b5ed8/resourceGroups/elrod-id_group/providers/Microsoft.Web/staticSites/elrod-id-website?api-version=2024-04-01" \
+  --query properties.deploymentAuthPolicy -o tsv
+```
+
 ### Interim: deployment token secret
 
 Record 0001 calls for OIDC sign-in with no stored Azure secret. That is not
