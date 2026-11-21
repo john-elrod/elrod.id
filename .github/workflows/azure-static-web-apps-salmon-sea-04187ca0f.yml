@@ -1,5 +1,9 @@
 name: Build and deploy to Azure Static Web Apps
 
+# Do not rename this file. Azure Static Web Apps identifies the app from the
+# GitHub OIDC workflow reference, which includes this generated filename
+# (docs/deployment.md, #37).
+
 # Every pull request to main is built. Every push to main is built and then
 # deployed to production. There are no PR preview deployments
 # (docs/decisions/0001-technology-stack-and-hosting.md).
